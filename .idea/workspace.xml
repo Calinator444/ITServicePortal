@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99ee8381-b7bb-48e7-addd-e657b56d57bb" name="Changes" comment="Login page set up">
+    <list default="true" id="99ee8381-b7bb-48e7-addd-e657b56d57bb" name="Changes" comment="Removed context.xml">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,6 +46,19 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="87a08f66-9e50-4950-a342-0f78a050484c" />
+        <option name="url" value="https://github.com/Calinator444/ITServicePortal.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -189,7 +203,7 @@
       <workItem from="1684469561674" duration="203000" />
       <workItem from="1684470963577" duration="38000" />
       <workItem from="1684471004598" duration="36000" />
-      <workItem from="1684471117355" duration="8787000" />
+      <workItem from="1684471117355" duration="9039000" />
     </task>
     <task id="LOCAL-00001" summary="Login page set up">
       <created>1684482294484</created>
@@ -198,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684482294484</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Removed context.xml">
+      <created>1684482908773</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1684482908773</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,6 +227,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Login page set up" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login page set up" />
+    <MESSAGE value="Removed context.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed context.xml" />
   </component>
 </project>
