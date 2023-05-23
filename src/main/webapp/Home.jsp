@@ -1,3 +1,5 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%--
   Created by IntelliJ IDEA.
   User: calin
@@ -12,5 +14,11 @@
 </head>
 <body>
 <h1>Welcome to IT Services portal!</h1>
+
+    <s:iterator value="#session.Issues" var="issue">
+        <h1>Issue</h1>
+        <s:property value="#issue.issueDescript" />
+    </s:iterator>
+
 </body>
 </html>
