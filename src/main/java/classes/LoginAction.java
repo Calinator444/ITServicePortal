@@ -8,12 +8,22 @@ import com.opensymphony.xwork2.Result;
 //import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.opensymphony.xwork2.validator.annotations.*;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.dispatcher.SessionMap;
+import org.apache.struts2.interceptor.SessionAware;
 
 import javax.servlet.Servlet;
 import java.sql.*;
+import java.util.Map;
 
-public class LoginAction extends ActionSupport implements ConnectionAware, ModelDriven<UserBean> {
+public class LoginAction extends ActionSupport implements ConnectionAware, ModelDriven<UserBean>, SessionAware {
 
+    private SessionMap<String, Object> sessionMap;
+
+    @Override
+    public void setSession(Map<String, Object> map)
+    {
+        sessionMap = (SessionMap) map;
+    }
     private UserBean model = new UserBean();
     private String userUsername = null;
     private String userPassword = null;
@@ -37,21 +47,7 @@ public class LoginAction extends ActionSupport implements ConnectionAware, Model
     )
     public String execute() throws SQLException
     {
-        /*
-        String username = this.model.getUsername();
-        String password = this.model.getPassword();
-        PreparedStatement ps = con.prepareStatement("SELECT * FROM ENDUSER WHERE userUsername= ?");
-        ps.setString(1, username);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            if (rs.getString("userUsername").equals(username))
-            {
-                System.out.println("user found!");
-                this.userUsername = rs.getString("userUsername");
-                this.userPassword = rs.getString("userPassword");
-            }
-
-        }*/
+        sessionMap.put("Issues", DatabaseInterface.getIssues());
         return SUCCESS;
     }
     //VALIDATIONS
