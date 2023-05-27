@@ -22,15 +22,18 @@ Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
         <default-interceptor-ref name="InterceptorStack"></default-interceptor-ref>-->
 
         <!-- Define actions here -->
-        <action name="Login">
+
+        <action name = "toLogin">
             <result name="success">/Login.jsp</result>
+        </action>
+
+        <action name="Login">
+            <result name="success">/Home.jsp</result>
         </action>
 
         <action name="LoginAction" class="classes.LoginAction">
             <result name="success">/Home.jsp</result>
             <result name="input">/Login.jsp</result>
         </action>
-
-
     </package>
 </struts>
