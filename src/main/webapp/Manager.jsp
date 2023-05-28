@@ -9,18 +9,17 @@
 <html>
 <head>
     <title>Title</title>
-    <nav>
-        <ul>
-            <li><a href="./Home.jsp">Home</a></li>
-            <li><a href="#Kowledge Base">Kowledge Base</a></li>
-            <li><a href="./SubmitIssue.jsp">Submit Issue</a></li>
-            <li><s:form action="search"><s:textfield/><s:submit value="Search"/></s:form></li>
-            <li><s:form action="toLogin"><s:submit value="Login"/></s:form></li>
-            <li><s:form action="./Logout.jsp"><s:submit value="Logout"/></s:form></li>
-        </ul>
-    </nav>
 </head>
 <body>
-
+<nav>
+    <ul>
+        <li><a href="./Home.jsp">Home</a></li>
+        <li><a href="#Kowledge Base">Kowledge Base</a></li>
+        <li><a href="./SubmitIssue.jsp">Submit Issue</a></li>
+        <li><s:form action="search"><s:textfield/><s:submit value="Search"/></s:form></li>
+        <li><s:form action="toLogin"><s:submit value="Login"/></s:form></li>
+        <li><s:form action="./Logout.jsp"><s:submit value="Logout"/></s:form></li>
+    </ul>
+</nav>
 </body>
 </html>

@@ -4,20 +4,19 @@
 <html>
 <head>
     <title>IT Staff Dashboard</title>
-    <nav>
-        <ul>
-            <li><a href="#Home">Home</a></li>
-            <li><a href="#Kowledge Base">Kowledge Base</a></li>
-            <li><a href="#Submit Issue">Submit Issue</a></li>
-            <li><form><input type = "text"><input type = "submit" value = "search"></form></li>
-            <li><form><input type="hidden" value="login"><input type="submit" value = "Login"></form></li>
-            <li><form><input type="hidden" value="logout"><input type="submit" value = "Logout"></form></li>
-        </ul>
-    </nav>
 </head>
 <body>
 <h1>Welcome, ${user.firstName} ${user.lastName}!</h1>
-
+<nav>
+    <ul>
+        <li><a href="./Home.jsp">Home</a></li>
+        <li><a href="#Kowledge Base">Kowledge Base</a></li>
+        <li><a href="./SubmitIssue.jsp">Submit Issue</a></li>
+        <li><s:form action="search"><s:textfield/><s:submit value="Search"/></s:form></li>
+        <li><s:form action="toLogin"><s:submit value="Login"/></s:form></li>
+        <li><s:form action="./Logout.jsp"><s:submit value="Logout"/></s:form></li>
+    </ul>
+</nav>
 <h2>All Issues</h2>
 <table>
     <tr>
