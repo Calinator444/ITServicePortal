@@ -1,5 +1,7 @@
 package classes;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseInterface {
 
@@ -28,4 +30,29 @@ public class DatabaseInterface {
             throw(e);
         }
     }
+
+    public static List<IssueBean> getIssues() throws SQLException {
+        List<IssueBean> issues = new ArrayList<IssueBean>();
+        //IssueBean[] issues = {};
+        try (Connection con = DatabaseConnector.getConnection()) {
+            Statement statement = con.createStatement();
+            //PreparedStatement ps = con.prepareStatement("SELECT * FROM ENDUSER WHERE userUsername= ?");
+            //ps.setString(1, username);
+            ResultSet rs = statement.executeQuery("SELECT * FROM ISSUES");
+            while (rs.next()) {
+                IssueBean issue = new IssueBean();
+                issue.setIssueDescript(rs.getString("body"));
+                issue.setTitle(rs.getString("title"));
+                issues.add(issue);
+                //issues = ArrayFunctions.appendToArray(issues, issue);
+            }
+            return issues;
+        }
+        catch(SQLException e)
+        {
+            throw (e);
+        }
+        //return null;
+    }
+
 }

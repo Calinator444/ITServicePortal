@@ -1,4 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%--
   Created by IntelliJ IDEA.
   User: calin
@@ -10,18 +11,23 @@
 <html>
 <head>
     <title>Home</title>
-    <nav>
-        <ul>
-            <li><a href="./Home.jsp">Home</a></li>
-            <li><a href="#Kowledge Base">Kowledge Base</a></li>
-            <li><a href="./SubmitIssue.jsp">Submit Issue</a></li>
-            <li><s:form action="search"><s:textfield/><s:submit value="Search"/></s:form></li>
-            <li><s:form action="toLogin"><s:submit value="Login"/></s:form></li>
-            <li><s:form action="./Logout.jsp"><s:submit value="Logout"/></s:form></li>
-        </ul>
-    </nav>
 </head>
 <body>
 <h1>Welcome to IT Services portal!</h1>
+<nav>
+    <ul>
+        <li><a href="./Home.jsp">Home</a></li>
+        <li><a href="#Kowledge Base">Kowledge Base</a></li>
+        <li><a href="./SubmitIssue.jsp">Submit Issue</a></li>
+        <li><s:form action="search"><s:textfield/><s:submit value="Search"/></s:form></li>
+        <li><s:form action="toLogin"><s:submit value="Login"/></s:form></li>
+        <li><s:form action="./Logout.jsp"><s:submit value="Logout"/></s:form></li>
+    </ul>
+</nav>
+    <s:iterator value="#session.Issues" var="issue">
+        <h1>Issue</h1>
+        <s:property value="#issue.issueDescript" />
+    </s:iterator>
+
 </body>
 </html>
