@@ -9,8 +9,6 @@ public class UserBean {
         this.username = username;
     }
 
-    private String username;
-
     public String getPassword() {
         return password;
     }
@@ -20,4 +18,5 @@ public class UserBean {
     }
 
     private String password;
+    private String username;
 }
