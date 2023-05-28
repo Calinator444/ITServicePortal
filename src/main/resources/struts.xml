@@ -22,6 +22,29 @@ Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
         <default-interceptor-ref name="InterceptorStack"></default-interceptor-ref>-->
 
         <!-- Define actions here -->
+
+
+        <action name="ViewIssue" class="classes.IssueViewAction">
+            <result name="success">
+                /ViewIssue.jsp
+            </result>
+            <result name="error">
+                /ViewIssue.jsp
+            </result>
+        </action>
+        <action name="IssueReporting">
+            <result name="success">
+                /IssueReporting.jsp
+            </result>
+        </action>
+        <action name="SubmitIssue" class="classes.SubmitAction">
+            <result name="success">
+                /IssueReporting.jsp
+            </result>
+            <result name="error">
+                /IssueReporting.jsp
+            </result>
+        </action>
         <action name="Login">
             <result name="success">/Login.jsp</result>
         </action>
