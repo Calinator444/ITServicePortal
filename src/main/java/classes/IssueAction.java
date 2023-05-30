@@ -19,14 +19,19 @@ import java.sql.*;
 import java.util.Map;
 import java.util.List;
 public class IssueAction extends ActionSupport {
+    private List<IssueBean> issue;
     private List<String> issueTitles;
 
-    public String execute() {
-        issueTitles = DatabaseInterface.getAllIssueTitles();
+    public String execute() throws SQLException {
+        issue = DatabaseInterface.getIssue();
         return SUCCESS;
     }
 
     public List<String> getIssueTitles() {
+        for (IssueBean issuleList : issue) {
+            String title = issuleList.getTitle();
+            issueTitles.add(title);
+        }
         return issueTitles;
     }
 }
