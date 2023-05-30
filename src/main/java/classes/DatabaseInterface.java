@@ -18,9 +18,10 @@ public class DatabaseInterface {
                 if (rs.getString("userUsername").equals(username)) {
                     String userUsername = rs.getString("userUsername");
                     String userPassword = rs.getString("userPassword");
+                    String userRole = rs.getString("userRole");
                     ub.setUsername(userUsername);
                     ub.setPassword(userPassword);
-                    return ub;
+                    ub.setRole(userRole);
                 }
             }
             return null;
@@ -31,28 +32,51 @@ public class DatabaseInterface {
         }
     }
 
-    public static List<IssueBean> getIssues() throws SQLException {
-        List<IssueBean> issues = new ArrayList<IssueBean>();
+    public static List<IssueBean> getIssueTitle() throws SQLException {
+        List<IssueBean> issues = new ArrayList<>();
         //IssueBean[] issues = {};
         try (Connection con = DatabaseConnector.getConnection()) {
             Statement statement = con.createStatement();
             //PreparedStatement ps = con.prepareStatement("SELECT * FROM ENDUSER WHERE userUsername= ?");
             //ps.setString(1, username);
-            ResultSet rs = statement.executeQuery("SELECT * FROM ISSUES");
+            ResultSet rs = statement.executeQuery("SELECT title FROM ISSUES");
             while (rs.next()) {
                 IssueBean issue = new IssueBean();
-                issue.setIssueDescript(rs.getString("body"));
+                issue.setIssueID(rs.getInt("issueId"));
+                issue.setReporter(rs.getString("reporter"));
+                issue.setFixer(rs.getString("fixer"));
+                issue.setIssueStatus(rs.getString("issueStatus"));
                 issue.setTitle(rs.getString("title"));
+                issue.setIssueDescript(rs.getString("issueDescript"));
+                issue.setResolution(rs.getString("resolution"));
+                issue.setDateTimeReport(rs.getDate("dateTimeReport"));
+                issue.setDateTimeResolved(rs.getDate("dateTimeSolved"));
+
                 issues.add(issue);
-                //issues = ArrayFunctions.appendToArray(issues, issue);
             }
-            return issues;
         }
         catch(SQLException e)
         {
             throw (e);
         }
+        return issues;
         //return null;
+    }
+
+    public static List<String> getAllIssueTitles() {
+        List<String> issueTitles = new ArrayList<>();
+
+        try (Connection con = DatabaseConnector.getConnection();
+             Statement statement = con.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT title FROM ISSUES")) {
+            while (resultSet.next()) {
+                String title = resultSet.getString("title");
+                issueTitles.add(title);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return issueTitles;
     }
 
 }
