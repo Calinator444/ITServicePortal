@@ -42,7 +42,7 @@ public class DatabaseInterface {
             while (rs.next()) {
                 IssueBean issue = new IssueBean();
                 issue.setIssueDescript(rs.getString("issueDescript"));
-                issue.setIssueID(rs.getInt("issueId"));
+                issue.setIssueId(rs.getInt("issueId"));
                 issue.setReporter(rs.getString("reporter"));
                 issue.setFixer(rs.getString("fixer"));
                 issue.setIssueStatus(rs.getString("issueStatus"));
