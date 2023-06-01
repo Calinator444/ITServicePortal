@@ -14,9 +14,9 @@
 <body>
   <h1>Login</h1>
   <c:form action="LoginAction.action">
-    <c:textfield name="username" label="Username"></c:textfield>
+      <c:textfield name="username" label="Username"></c:textfield>
 
-    <c:password name="password" label="Password" showPassword="false"></c:password>
+      <c:password name="password" label="Password" showPassword="false"></c:password>
     <c:submit/>
   </c:form>
 </body>

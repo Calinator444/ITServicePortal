@@ -1,6 +1,22 @@
 package classes;
+import java.util.*;
+import com.sun.source.doctree.CommentTree;
+
+import javax.xml.stream.events.Comment;
 
 public class IssueBean {
+
+
+    public List<CommentBean> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentBean> comments) {
+        this.comments = comments;
+    }
+
+    private List<CommentBean> comments;
+
     public String getIssueStatus() {
         return issueStatus;
     }
@@ -44,5 +60,15 @@ public class IssueBean {
 
     private IssueBean[] issues;
 
+
+    public int getIssueId() {
+        return issueId;
+    }
+
+    public void setIssueId(int issueId) {
+        this.issueId = issueId;
+    }
+
+    private int issueId;
     private String issueStatus, title, issueDescript, resolution;
 }

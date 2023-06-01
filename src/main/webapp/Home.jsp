@@ -24,10 +24,18 @@
         <li><s:form action="./Logout.jsp"><s:submit value="Logout"/></s:form></li>
     </ul>
 </nav>
+
+
+    <h1>Issues</h1>
+    <ul>
     <s:iterator value="#session.Issues" var="issue">
-        <h1>Issue</h1>
-        <s:property value="#issue.issueDescript" />
+        <li>
+            <a href="/ITServicesPortal/ViewIssue.action?title=${issue.title}">
+                <s:property value="#issue.title"/>
+            </a>
+        </li>
     </s:iterator>
+    </ul>
 
 </body>
 </html>

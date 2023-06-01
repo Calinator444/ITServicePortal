@@ -25,8 +25,7 @@ public class LoginAction extends ActionSupport implements ConnectionAware, Model
         sessionMap = (SessionMap) map;
     }
     private UserBean model = new UserBean();
-    private String userUsername = null;
-    private String userPassword = null;
+    private boolean loginSuccessful = true;
     @Override
     public UserBean getModel() {
         return model;
@@ -47,7 +46,9 @@ public class LoginAction extends ActionSupport implements ConnectionAware, Model
     )
     public String execute() throws SQLException
     {
+        //execute only runs on a successful login
         sessionMap.put("Issues", DatabaseInterface.getIssues());
+        sessionMap.put("User", this.model);
         return SUCCESS;
     }
     //VALIDATIONS
@@ -59,18 +60,22 @@ public class LoginAction extends ActionSupport implements ConnectionAware, Model
             UserBean userEntry = DatabaseInterface.getUser(username);
             if(userEntry != null)
             {
-                if(!userEntry.getPassword().equals(password))
+                if(!userEntry.getPassword().equals(password)) {
                     this.addFieldError("password", "Password does not match username");
+                    loginSuccessful = false;
+                }
             }
             else
             {
                 this.addFieldError("username", "Username was not found");
+                loginSuccessful = false;
             }
         }
         catch (SQLException e)
         {
             System.out.println(e.getMessage());
             addFieldError("username", "Server appears to be down");
+            loginSuccessful = false;
         }
 
     }
