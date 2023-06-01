@@ -1,4 +1,5 @@
 package classes;
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -147,6 +148,42 @@ public class DatabaseInterface {
         {
             throw(e);
         }
+    }
+
+
+
+
+    //I'll add an overload with the subcategory again soon
+    {
+
+    }
+    public static List<IssueBean> getFilteredIssues(int tagId, int subTagId) throws SQLException
+    {
+        String query = "SELECT reporter, fixer, issueStatus, title, issueDescript, dateTimeReport, dateTimeSolved FROM ISSUES "+
+        "INNER JOIN TAGS ON ISSUES.tagId = TAGS.tagId "+
+        "INNER JOIN SUBTAGS ON SUBTAGS.subtagId = ISSUES.subTagId "+
+        "WHERE ISSUES.subTagId = ? AND ISSUES.tagId = ?";
+        List<IssueBean> issues = new ArrayList<IssueBean>();
+
+        try(Connection con = DatabaseConnector.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, subTagId);
+            ps.setInt(2, tagId);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                IssueBean i = new IssueBean();
+                i.setReporter(rs.getString("reporter"));
+                i.setFixer(rs.getString("fixer"));
+                i.setTitle(rs.getString("title"));
+                i.setIssueDescript(rs.getString("issueDescript"));
+                issues.add(i);
+            }
+        }
+        catch (SQLException e) {
+            throw (e);
+        }
+        return issues;
     }
     public static void replyToComment(int commentId, String user, String body) throws SQLException
     {
