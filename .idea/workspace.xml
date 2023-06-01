@@ -5,21 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99ee8381-b7bb-48e7-addd-e657b56d57bb" name="Changes" comment="Created a view page for issues which interacts with database">
-      <change afterPath="$PROJECT_DIR$/src/main/java/classes/AddComment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/classes/AddReply.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/classes/CommentBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/classes/ReplyBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery-3.7.0.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___com_example___ITServicePortal_1_0_SNAPSHOT_war__exploded_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Gradle___com_example___ITServicePortal_1_0_SNAPSHOT_war__exploded_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/ArrayFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/ArrayFunctions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/classes/DatabaseInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/DatabaseInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/IssueAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/IssueAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/classes/IssueBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/IssueBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/LoginAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/UserBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/UserBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/struts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/struts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/Home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/ViewIssue.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/ViewIssue.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/IssueReporting.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/IssueReporting.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +63,7 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="87a08f66-9e50-4950-a342-0f78a050484c" />
+        <option name="accountId" value="ad4f245c-cb7c-4773-8113-b7d484c24065" />
         <option name="url" value="https://github.com/Calinator444/ITServicePortal.git" />
       </UrlAndAccount>
     </option>
@@ -93,15 +88,20 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/calin/IdeaProjects/ITServicePortal/src/main/webapp",
+    "last_opened_file_path": "C:/Users/ryanb/Documents/GitHub/ITServicePortal1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlserver"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -115,7 +115,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Tomcat 9.0.71" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.71" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="11">
+    <configuration name="Tomcat 9.0.71" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.72" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="11">
       <option name="UPDATING_POLICY" value="hot-swap-classes" />
       <deployment>
         <artifact name="Gradle : com.example : ITServicePortal-1.0-SNAPSHOT.war">
@@ -227,6 +227,7 @@
       <workItem from="1685405838233" duration="13345000" />
       <workItem from="1685493891839" duration="5643000" />
       <workItem from="1685531815972" duration="11792000" />
+      <workItem from="1685582807491" duration="14962000" />
     </task>
     <task id="LOCAL-00001" summary="Login page set up">
       <created>1684482294484</created>
@@ -270,7 +271,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685282852649</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Created a view page for issues which interacts with database">
+      <created>1685586989610</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1685586989610</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,5 +301,8 @@
     <MESSAGE value="Got session storage working" />
     <MESSAGE value="Created a view page for issues which interacts with database" />
     <option name="LAST_COMMIT_MESSAGE" value="Created a view page for issues which interacts with database" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ITServicePortal$Tomcat_9_0_71.ic" NAME="Tomcat 9.0.71 Coverage Results" MODIFIED="1685597329444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

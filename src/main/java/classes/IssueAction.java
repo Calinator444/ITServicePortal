@@ -23,7 +23,7 @@ public class IssueAction extends ActionSupport {
     private List<String> issueTitles;
 
     public String execute() throws SQLException {
-        issue = DatabaseInterface.getIssue();
+        issue = DatabaseInterface.getIssues();
         return SUCCESS;
     }
 

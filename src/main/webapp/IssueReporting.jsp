@@ -1,4 +1,5 @@
-<%@ taglib prefix="c" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: calin
@@ -14,10 +15,10 @@
 <body>
   <h1>Report Issue</h1>
 
-  <c:form action="SubmitIssue.action">
-    <c:textfield label="title" name="title"></c:textfield>
-    <c:textarea label="description" name="issueDescript"></c:textarea>
-    <c:submit value="Submit"/>
-  </c:form>
+  <s:form action="SubmitAction">
+    <s:textfield label="title" name="title"></s:textfield>
+    <s:textarea label="description" name="issueDescript"></s:textarea>
+    <s:submit value="Submit"/>
+  </s:form>
 </body>
 </html>

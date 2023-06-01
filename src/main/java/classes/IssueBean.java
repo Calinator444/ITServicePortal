@@ -21,6 +21,8 @@ public class IssueBean {
     private Date dateTimeResolved;
     private int issueId;
 
+    private String issueCategory;
+
     public List<CommentBean> getComments() {
         return comments;
     }

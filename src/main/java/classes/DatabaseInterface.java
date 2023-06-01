@@ -141,7 +141,9 @@ public class DatabaseInterface {
             PreparedStatement ps = con.prepareStatement("INSERT INTO ISSUES VALUES(null, null, 'new', ?, ?, CURRENT_TIMESTAMP, null)");
             ps.setString(1, title);
             ps.setString(2, description);
-            ps.executeUpdate();
+            int affectedRows = ps.executeUpdate();
+            System.out.println("Inserted new issue with title: " + title + ", and description: " + description + ". Affected rows: " + affectedRows);
+
         }
         catch(SQLException e)
         {
@@ -183,3 +185,5 @@ public class DatabaseInterface {
     }
 
 }
+
+
