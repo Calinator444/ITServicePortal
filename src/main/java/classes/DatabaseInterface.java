@@ -31,6 +31,23 @@ public class DatabaseInterface {
             throw(e);
         }
     }
+
+    public static String getUserRole(String username) throws SQLException {
+        try (Connection con = DatabaseConnector.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT userRole FROM ENDUSER WHERE userUsername = ?");
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getString("userRole");
+            } else {
+                return null; // or throw an exception, depending on your requirements
+            }
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+
+
     public static IssueBean getIssue(String title)
     {
         IssueBean i = new IssueBean();
@@ -136,9 +153,10 @@ public class DatabaseInterface {
         }
         //return null;
     }
-    public static void reportNewIssue(String title, String description) throws SQLException {
+    public static void reportNewIssue(String title, String description, String category) throws SQLException {
         try (Connection con = DatabaseConnector.getConnection())
         {
+
             PreparedStatement ps = con.prepareStatement("INSERT INTO ISSUES VALUES(null, null, 'new', ?, ?, CURRENT_TIMESTAMP, null)");
             ps.setString(1, title);
             ps.setString(2, description);

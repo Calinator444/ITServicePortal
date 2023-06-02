@@ -21,6 +21,10 @@ public class IssueBean {
     private Date dateTimeResolved;
     private int issueId;
 
+    private String category;
+
+    private UserBean currentUser;
+
     private String issueCategory;
 
     public List<CommentBean> getComments() {
@@ -37,7 +41,9 @@ public class IssueBean {
         return issueStatus;
     }
 
-
+    public UserBean getCurrentUser() {
+        return this.currentUser;
+    }
     public String getTitle() {
         return title;
     }
@@ -55,6 +61,7 @@ public class IssueBean {
     public Date getDateTimeReport(){ return dateTimeReport; }
     public Date getDateTimeResolved(){ return dateTimeResolved; }
     public int getIssueId(){ return issueId; }
+    public String getCategory() {return category;}
 
     //setter methods
     public void setIssueStatus(String issueStatus) {
@@ -65,6 +72,15 @@ public class IssueBean {
     public void setFixer(String fixer){this.fixer = fixer; }
     public void setIssueDescript(String issueDescript) {
         this.issueDescript = issueDescript;
+    }
+    public void setCategory(String category) {this.category = category;}
+
+    public void setDateTimeResolved(Date dateTimeResolved){
+        this.dateTimeResolved = dateTimeResolved;
+    }
+
+    public void setCurrentUser(UserBean currentUser) {
+        this.currentUser = currentUser;
     }
 
 

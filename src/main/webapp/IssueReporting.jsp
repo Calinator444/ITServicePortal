@@ -18,6 +18,11 @@
   <s:form action="SubmitAction">
     <s:textfield label="title" name="title"></s:textfield>
     <s:textarea label="description" name="issueDescript"></s:textarea>
+    <s:checkbox name="category" fieldValue="Network" label="Network" />
+    <s:checkbox name="category" fieldValue="Software" label="Software" />
+    <s:checkbox name="category" fieldValue="Hardware" label="Hardware" />
+    <s:checkbox name="category" fieldValue="Email" label="Email" />
+    <s:checkbox name="category" fieldValue="Account" label="Account" />
     <s:submit value="Submit"/>
   </s:form>
 </body>
