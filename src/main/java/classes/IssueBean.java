@@ -2,6 +2,9 @@ package classes;
 import java.util.*;
 public class IssueBean {
 
+
+
+    /*
     public IssueBean(){
         issueStatus = "";
         reporter = "";
@@ -10,7 +13,7 @@ public class IssueBean {
         issueDescript = "";
         resolution = "";
         issueId = 0;
-    }
+    }*/
     private String issueStatus;
     private String reporter;
     private String fixer;

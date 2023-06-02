@@ -50,8 +50,15 @@
 <h1>Welcome to IT Services portal!</h1>
 <nav>
     <ul>
+
+
+
         <li><a href="./Home.jsp">Home</a></li>
         <li><a href="#Kowledge Base">Kowledge Base</a></li>
+        <li><a href="./SubmitIssue.jsp">Submit Issue</a></li>
+        <s:if test='%{#session.User.role == "ITManager"}'>
+            <li><a href="/ITServicesPortal/ITManagementView.action">IT Manager Resources</a></li>
+        </s:if>
         <li><a href="./IssueReporting.jsp">Submit Issue</a></li>
         <li><s:form action="search"><s:textfield/><s:submit value="Search"/></s:form></li>
         <li><s:form action="toLogin"><s:submit value="Login"/></s:form></li>
