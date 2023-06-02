@@ -1,4 +1,5 @@
 package classes;
+import javax.xml.crypto.Data;
 import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
@@ -6,30 +7,63 @@ import java.util.List;
 
 public class DatabaseInterface {
 
-    public static UserBean getUser(String username) throws SQLException
-    {
 
-        UserBean ub = new UserBean();
+
+
+    public static void assignStaffToIssue(String username, int issueId) throws SQLException
+    {
         try(Connection con = DatabaseConnector.getConnection())
         {
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM ENDUSER WHERE userUsername= ?");
+            PreparedStatement ps =  con.prepareStatement("UPDATE ISSUES SET fixer= ?,issueStatus = 'in progress' WHERE issueId = ?");
             ps.setString(1, username);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                if (rs.getString("userUsername").equals(username)) {
-                    String userUsername = rs.getString("userUsername");
-                    String userPassword = rs.getString("userPassword");
-                    ub.setUsername(userUsername);
-                    ub.setPassword(userPassword);
-                    return ub;
-                }
-            }
-            return null;
+            ps.setInt(2,issueId);
+            ps.executeUpdate();
         }
         catch (SQLException e)
         {
             throw(e);
         }
+    }
+    public static UserBean getUser(String username) throws SQLException
+    {
+
+        UserBean ub = new UserBean();
+        try(Connection con = DatabaseConnector.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT firstName, lastName, email, contactNo, ENDUSER.userUsername, userPassword, userRole  FROM ENDUSER " +
+                    "INNER JOIN ROLE ON ROLE.userUsername = ENDUSER.userUsername " +
+                    "WHERE ENDUSER.userUsername = ?");
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                //UserBean userBean = new UserBean();
+                //if (rs.getString("userUsername").equals(username)) {
+                //    String userUsername = rs.getString("userUsername");
+                //    String userPassword = rs.getString("userPassword");
+                //    ub.setUsername(userUsername);
+                //    ub.setPassword(userPassword);
+                //return ub;
+                UserBean userBean = new UserBean();
+                userBean.setFirstName(
+                        rs.getString("firstName"));
+                userBean.setLastName(
+                        rs.getString("lastName"));
+                userBean.setContactNo(
+                        rs.getInt("contactNo"));
+                userBean.setUsername(
+                        rs.getString("userUsername"));
+                userBean.setPassword(
+                        rs.getString("userPassword"));
+                userBean.setRole(
+                        rs.getString("userRole"));
+                return userBean;
+            }
+        }
+        catch (SQLException e)
+        {
+            throw(e);
+        }
+        return null;
+
     }
     public static IssueBean getIssue(String title)
     {
@@ -217,6 +251,87 @@ public class DatabaseInterface {
             //System.out.println("sql error occurred");
             throw(e);
         }
+    }
+
+    public static void markIssueStatus(int issueId, String status) throws SQLException
+    {
+        try(Connection con = DatabaseConnector.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement("UPDATE ISSUES SET issueStatus = ? WHERE issueId = ?");
+            ps.setString(1, status);
+            ps.setInt(2, issueId);
+            ps.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            throw(e);
+        }
+    }
+
+
+
+    public static List<IssueBean> getissuesWithStatus(String status) throws SQLException
+    {
+        List<IssueBean> issues = new ArrayList<IssueBean>();
+        String query = "SELECT * FROM ISSUES WHERE issueStatus = ?";
+        try(Connection con = DatabaseConnector.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, status);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                IssueBean issue = new IssueBean();
+                issue.setIssueDescript(rs.getString("issueDescript"));
+                issue.setIssueId(rs.getInt("issueId"));
+                issue.setReporter(rs.getString("reporter"));
+                issue.setFixer(rs.getString("fixer"));
+                issue.setIssueStatus(rs.getString("issueStatus"));
+                issue.setTitle(rs.getString("title"));
+                issues.add(issue);
+            }
+        }
+        catch(SQLException e)
+        {
+            throw(e);
+        }
+        return issues;
+    }
+    public static List<UserBean> getUsersWithRole(String role) throws SQLException
+    {
+
+        List<UserBean> users = new ArrayList<UserBean>();
+        String query = "SELECT firstName, lastName, email, contactNo, ENDUSER.userUsername, userPassword, userRole  FROM ENDUSER "+
+        "INNER JOIN ROLE ON ROLE.userUsername = ENDUSER.userUsername "+
+        "WHERE userRole = ?";
+        try(Connection con = DatabaseConnector.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, role);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                UserBean userBean = new UserBean();
+                userBean.setFirstName(
+                rs.getString("firstName"));
+                userBean.setLastName(
+                rs.getString("lastName"));
+                userBean.setContactNo(
+                rs.getInt("contactNo"));
+                userBean.setUsername(
+                rs.getString("userUsername"));
+                userBean.setPassword(
+                rs.getString("userPassword"));
+                userBean.setRole(
+                rs.getString("userRole"));
+                users.add(userBean);
+            }
+
+        }
+        catch (SQLException e)
+        {
+            throw(e);
+        }
+        return users;
     }
 
 }

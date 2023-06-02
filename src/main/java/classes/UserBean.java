@@ -39,6 +39,37 @@ public class UserBean {
         this.role = role;
     }
 
-    private String role;
-    private String username;
+    private String username, role, firstName, lastName,email;
+    private int contactNo;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getContactNo() {
+        return contactNo;
+    }
+
+    public void setContactNo(int contactNo) {
+        this.contactNo = contactNo;
+    }
 }

@@ -47,7 +47,7 @@ public class LoginAction extends ActionSupport implements ConnectionAware, Model
     {
         //execute only runs on a successful login
         sessionMap.put("Issues", DatabaseInterface.getIssues());
-        sessionMap.put("User", this.model);
+        sessionMap.put("User", DatabaseInterface.getUser(this.model.getUsername()));
         return SUCCESS;
     }
     //VALIDATIONS

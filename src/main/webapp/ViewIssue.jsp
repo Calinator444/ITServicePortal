@@ -20,7 +20,14 @@
   }
 
 
-
+  const markIssue = ()=>{
+    let status = document.querySelector("#mark-issue").value;
+    let data = new URLSearchParams();
+    data.append("status",status);
+    fetch("/ITServicesPortal/MarkIssue", {method: "POST", body:data}).then((res)=>{
+      alert("Issue status successfully updated to: "+status)
+    })
+  }
   const replyToComment = (commentId)=>{
     let item = "#reply"+commentId
     let body = document.querySelector(item).value;
@@ -52,8 +59,26 @@
 
 
   </p>
-
-
+  <label for="mark-issue">Mark Issue</label>
+  <select id="mark-issue">
+    <option>
+      new
+    </option>
+    <option>
+      waiting on third party
+    </option>
+    <option>
+      completed
+    </option>
+    <option>
+      not accepted
+    </option>
+    <option>
+      resolved
+    </option>
+  </select>
+  <button onclick="markIssue()">Mark Issue</button>
+  </button>
 
 
   <c:form action="/AddComment" method="POST">
@@ -61,8 +86,9 @@
     <c:submit></c:submit>
   </c:form>
 
-
-
+  <p>
+  IssueId: <c:property value="#session.Issue.issueId"></c:property>
+  </p>
   <h3>Comments</h3>
   <ul>
   <c:iterator value="#session.Issue.comments" var="comment">
