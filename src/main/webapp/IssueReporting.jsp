@@ -15,14 +15,14 @@
 <body>
   <h1>Report Issue</h1>
 
-  <s:form action="SubmitAction">
+  <s:form action="SubmitIssue">
     <s:textfield label="title" name="title"></s:textfield>
     <s:textarea label="description" name="issueDescript"></s:textarea>
-    <s:checkbox name="category" fieldValue="Network" label="Network" />
-    <s:checkbox name="category" fieldValue="Software" label="Software" />
-    <s:checkbox name="category" fieldValue="Hardware" label="Hardware" />
-    <s:checkbox name="category" fieldValue="Email" label="Email" />
-    <s:checkbox name="category" fieldValue="Account" label="Account" />
+    <s:checkbox name="category" fieldValue="1" label="Network" />
+    <s:checkbox name="category" fieldValue="2" label="Software" />
+    <s:checkbox name="category" fieldValue="3" label="Hardware" />
+    <s:checkbox name="category" fieldValue="4" label="Email" />
+    <s:checkbox name="category" fieldValue="5" label="Account" />
     <s:submit value="Submit"/>
   </s:form>
 </body>

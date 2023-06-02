@@ -10,6 +10,8 @@ import java.sql.SQLException;
 
 public class SubmitAction extends ActionSupport implements ModelDriven<IssueBean> {
 
+
+
     private IssueBean model = new IssueBean();
     @Override
     public IssueBean getModel() {
@@ -24,18 +26,21 @@ public class SubmitAction extends ActionSupport implements ModelDriven<IssueBean
     public String execute(){
         try {
             Map<String, Object> session = ActionContext.getContext().getSession();
-            UserBean currentUser = (UserBean) session.get("currentUser");
-            model.setCurrentUser(currentUser);
 
             System.out.println("method ran");
             String description = this.model.getIssueDescript();
             String title = this.model.getTitle();
-            String category = this.model.getCategory();
-            String user = currentUser.getUsername();
-            System.out.println(user);
+            String tag = this.model.getCategory();
+            // Fetch the UserBean from the session
+            UserBean user = (UserBean) session.get("User"); // Replace "username" with the key you used when you put the UserBean into the session.
 
+            // Get the username from the UserBean
+            String username = user.getUsername();
 
-            DatabaseInterface.reportNewIssue(category, title, description);
+            System.out.println(username);
+            System.out.println(tag);
+
+            DatabaseInterface.reportNewIssue(title, description, username, tag);
         }
         catch (SQLException e)
         {

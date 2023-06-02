@@ -27,6 +27,7 @@
         <th>Created Date</th>
     </tr>
     <c:forEach var="issue" items="${myIssues}">
+        <c:if test="${issue.reporter == currentUser.username}">
         <tr>
             <td>${issue.id}</td>
             <td>${issue.title}</td>
@@ -34,6 +35,7 @@
             <td>${issue.category}</td>
             <td>${issue.createdDate}</td>
         </tr>
+        </c:if>
     </c:forEach>
 </table>
 

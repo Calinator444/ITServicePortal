@@ -153,15 +153,20 @@ public class DatabaseInterface {
         }
         //return null;
     }
-    public static void reportNewIssue(String title, String description, String category) throws SQLException {
+    public static void reportNewIssue(String title, String description, String user, String tag) throws SQLException {
+
+
+
         try (Connection con = DatabaseConnector.getConnection())
         {
 
-            PreparedStatement ps = con.prepareStatement("INSERT INTO ISSUES VALUES(null, null, 'new', ?, ?, CURRENT_TIMESTAMP, null)");
-            ps.setString(1, title);
-            ps.setString(2, description);
+            PreparedStatement ps = con.prepareStatement("INSERT INTO ISSUES VALUES(?, null, 'new', ?, ?, CURRENT_TIMESTAMP, null, ?)");
+            ps.setString(1, user);
+            ps.setString(2, title);
+            ps.setString(3, description);
+            ps.setInt(4, Integer.parseInt(tag));
             int affectedRows = ps.executeUpdate();
-            System.out.println("Inserted new issue with title: " + title + ", and description: " + description + ". Affected rows: " + affectedRows);
+            System.out.println("Inserted new issue with title: " + title + ", and description: " + description + "USER= " + user + ". Affected rows: " + affectedRows);
 
         }
         catch(SQLException e)

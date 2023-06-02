@@ -60,10 +60,9 @@ Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
         <action name="Home">
             <result name="success">Home.jsp</result>
         </action>
-        <action name="loginAction" class="classes.LoginAction">
-            <result name="user_dashboard">/User.jsp</result>
-            <result name="it_staff_dashboard">/Staff.jsp</result>
-            <result name="it_manager_dashboard">/Manager.jsp</result>
+        <action name="LoginAction" class="classes.LoginAction">
+            <result name="success">/Home.jsp</result>
+            <result name="input">/Login.jsp</result>
         </action>
 
 
