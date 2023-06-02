@@ -30,6 +30,7 @@ dependencies {
     //new dependencies
     implementation("jstl:jstl:1.2")
     implementation("org.apache.struts:struts2-core:6.1.2")
+    implementation 'com.microsoft.sqlserver:mssql-jdbc:9.4.1.jre11'
 
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")

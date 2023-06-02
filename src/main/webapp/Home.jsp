@@ -59,6 +59,7 @@
         <s:if test='%{#session.User.role == "ITManager"}'>
             <li><a href="/ITServicesPortal/ITManagementView.action">IT Manager Resources</a></li>
         </s:if>
+        <li><a href="./IssueReporting.jsp">Submit Issue</a></li>
         <li><s:form action="search"><s:textfield/><s:submit value="Search"/></s:form></li>
         <li><s:form action="toLogin"><s:submit value="Login"/></s:form></li>
         <li><s:form action="./Logout.jsp"><s:submit value="Logout"/></s:form></li>
