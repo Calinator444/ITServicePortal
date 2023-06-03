@@ -8,12 +8,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Home</title>
     <script>
-
-
         const filterIssues = ()=>{
             let tagId = document.querySelector("#category").value;
             let subTagId = document.querySelector("#subcategory"+tagId).value
@@ -45,16 +44,15 @@
             }
         }
     </script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <h1>Welcome to IT Services portal!</h1>
 <nav>
-    <ul>
-
-
-
+    <ul class="navigatonBar">
         <li><a href="./Home.jsp">Home</a></li>
         <li><a href="#Kowledge Base">Kowledge Base</a></li>
+        <li><a href="./SubmitIssue.jsp">Submit Issue</a></li>
         <s:if test='%{#session.User.role == "ITManager"}'>
             <li><a href="./ITManagementView.action">IT Manager View</a></li>
         </s:if>

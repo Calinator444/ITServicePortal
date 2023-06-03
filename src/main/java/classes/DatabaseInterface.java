@@ -222,6 +222,7 @@ public class DatabaseInterface {
         {
             throw (e);
         }
+        //return null;
     }
     public static void reportNewIssue(String reporter, String title, String description, int tagId, int subTagId, List<String> tags) throws SQLException {
         List<Integer> tagKeys = new ArrayList<Integer>();
@@ -460,4 +461,5 @@ public class DatabaseInterface {
         }
         return users;
     }
+
 }

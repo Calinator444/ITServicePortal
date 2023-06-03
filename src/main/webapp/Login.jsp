@@ -9,15 +9,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="loginPage">
   <h1>Login</h1>
-  <c:form action="LoginAction.action">
-      <c:textfield name="username" label="Username"></c:textfield>
+  <div class = "loginFormWrapper">
+      <h2>Login to your account</h2>
+      <c:form action="LoginAction.action">
+          <c:textfield name="username" label="Username" class="loginInput"></c:textfield>
 
-      <c:password name="password" label="Password" showPassword="false"></c:password>
-    <c:submit/>
-  </c:form>
+          <c:password name="password" label="Password" showPassword="false"></c:password>
+          <c:submit class="loginSubmit"/>
+      </c:form>
+  </div>
 </body>
 </html>
