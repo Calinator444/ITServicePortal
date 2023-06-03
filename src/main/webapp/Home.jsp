@@ -8,12 +8,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Home</title>
     <script>
-
-
         const filterIssues = ()=>{
             let tagId = document.querySelector("#category").value;
             let subTagId = document.querySelector("#subcategory"+tagId).value
@@ -39,30 +38,25 @@
                 let selectedValue = e.target.value;
                 console.log(selectedValue);
 
-
-
                 document.querySelector("#subcategory"+selectedValue+"-wrapper").style = "display:inline-block;"
             }
         }
     </script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <h1>Welcome to IT Services portal!</h1>
 <nav>
-    <ul>
-
-
-
+    <ul class="navigatonBar">
         <li><a href="./Home.jsp">Home</a></li>
         <li><a href="#Kowledge Base">Kowledge Base</a></li>
-        <li><a href="./SubmitIssue.jsp">Submit Issue</a></li>
         <s:if test='%{#session.User.role == "ITManager"}'>
             <li><a href="/ITServicesPortal/ITManagementView.action">IT Manager Resources</a></li>
         </s:if>
         <li><a href="./IssueReporting.jsp">Submit Issue</a></li>
-        <li><s:form action="search"><s:textfield/><s:submit value="Search"/></s:form></li>
-        <li><s:form action="toLogin"><s:submit value="Login"/></s:form></li>
-        <li><s:form action="./Logout.jsp"><s:submit value="Logout"/></s:form></li>
+        <li class="searchLi"><s:form action="search"><s:textfield name="search" class="searchField"/><s:submit value="Search" class="searchButton"/></s:form></li>
+        <li><s:form action="toLogin"><s:submit value="Login" class="loginButton"/></s:form></li>
+        <li><s:form action="./Logout.jsp"><s:submit value="Logout" class="logoutButton"/></s:form></li>
     </ul>
 </nav>
 

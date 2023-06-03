@@ -18,10 +18,10 @@
   <div class = "loginFormWrapper">
       <h2>Login to your account</h2>
       <c:form action="LoginAction.action">
-          <c:textfield name="username" label="Username"></c:textfield>
+          <c:textfield name="username" label="Username" class="loginInput"></c:textfield>
 
           <c:password name="password" label="Password" showPassword="false"></c:password>
-          <c:submit/>
+          <c:submit class="loginSubmit"/>
       </c:form>
   </div>
 </body>
