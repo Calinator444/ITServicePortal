@@ -76,6 +76,12 @@ public class IssueBean {
     public void setIssueDescript(String issueDescript) {
         this.issueDescript = issueDescript;
     }
+
+
+    public void setDateTimeReport(Date dateTimeReport)
+    {
+        this.dateTimeReport = dateTimeReport;
+    }
     public void setCategory(String category) {this.category = category;}
 
     public void setDateTimeResolved(Date dateTimeResolved){

@@ -24,6 +24,43 @@ public class DatabaseInterface {
             throw(e);
         }
     }
+
+
+    public static List<IssueBean> getIssuesAssignedToStaff(String username)
+    {
+        List<IssueBean> issues = new ArrayList<IssueBean>();
+        String statement = "SELECT reporter, fixer, issueStatus, title, issueDescript, dateTimeReport, dateTimeSolved FROM ISSUES "+
+                "INNER JOIN TAGS ON ISSUES.tagId = TAGS.tagId "+
+                "INNER JOIN SUBTAGS ON SUBTAGS.subtagId = ISSUES.subTagId "+
+                "WHERE fixer = ?";
+        try(Connection con = DatabaseConnector.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement(statement);
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+
+
+                System.out.println("found issue");
+                IssueBean i = new IssueBean();
+                i.setReporter(rs.getString("reporter"));
+                i.setFixer(rs.getString("fixer"));
+                i.setIssueStatus(rs.getString("issueStatus"));
+                i.setTitle(rs.getString("title"));
+                i.setIssueDescript(rs.getString("issueDescript"));
+                i.setDateTimeReport(rs.getDate("dateTimeReport"));
+                //well get the date/time it was reported later maybe?
+                //i.setDateTimeResolved();
+                issues.add(i);
+            }
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return issues;
+    }
     public static UserBean getUser(String username) throws SQLException
     {
 
@@ -175,6 +212,7 @@ public class DatabaseInterface {
                 issue.setFixer(rs.getString("fixer"));
                 issue.setIssueStatus(rs.getString("issueStatus"));
                 issue.setTitle(rs.getString("title"));
+                issue.setDateTimeReport(rs.getDate("dateTimeReport"));
                 issues.add(issue);
                 //issues = ArrayFunctions.appendToArray(issues, issue);
             }
@@ -184,17 +222,64 @@ public class DatabaseInterface {
         {
             throw (e);
         }
-        //return null;
     }
-    public static void reportNewIssue(String title, String description, String category) throws SQLException {
+    public static void reportNewIssue(String reporter, String title, String description, int tagId, int subTagId, List<String> tags) throws SQLException {
+        List<Integer> tagKeys = new ArrayList<Integer>();
+
+        int insertedId = -1;
         try (Connection con = DatabaseConnector.getConnection())
         {
-            PreparedStatement ps = con.prepareStatement("INSERT INTO ISSUES VALUES(null, null, 'new', ?, ?, CURRENT_TIMESTAMP, null)");
-            ps.setString(1, title);
-            ps.setString(2, description);
-            int affectedRows = ps.executeUpdate();
-            System.out.println("Inserted new issue with title: " + title + ", and description: " + description + ". Affected rows: " + affectedRows);
+            PreparedStatement ps;
+            for(String tag : tags)
+            {
 
+                ps = con.prepareStatement("IF NOT EXISTS(SELECT * FROM USERTAGS WHERE tag = ?) "+
+                        "BEGIN "+
+                        "INSERT INTO USERTAGS VALUES (?) "+
+                        "END "+
+                        "ELSE "+
+                        "BEGIN "+
+                        "SELECT tagId FROM USERTAGS WHERE tag = ? "+
+                        "END", PreparedStatement.RETURN_GENERATED_KEYS);
+                ps.setString(1,tag);
+                ps.setString(2,tag);
+                ps.setString(3, tag);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()) {
+                    System.out.println("Select operation was ran");
+                    System.out.println(rs.getString(1));
+                    tagKeys.add(rs.getInt(1));
+                }
+                else {
+                    System.out.println("Insert operation was ran");
+                    rs = ps.getGeneratedKeys();
+                    if (rs.next())
+                        tagKeys.add(rs.getInt(1));
+                }
+            }
+            for(int key : tagKeys)
+            {
+                System.out.println(key);
+            }
+            ps = con.prepareStatement("INSERT INTO ISSUES VALUES(?, null, 'new', ?, ?, CURRENT_TIMESTAMP, null, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, reporter);
+            ps.setString(2, title);
+            ps.setString(3, description);
+            ps.setInt(4,tagId);
+            ps.setInt(5,subTagId);
+            ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            while(rs.next())
+                insertedId = rs.getInt(1);
+            for(int key : tagKeys)
+            {
+                System.out.println("adding tuple to user tags");
+                ps = con.prepareStatement("INSERT INTO ISSUEUSERTAG VALUES(?,?)");
+                ps.setInt(1, insertedId);
+                ps.setInt(2, key);
+                ps.executeUpdate();
+            }
         }
         catch(SQLException e)
         {
@@ -314,6 +399,30 @@ public class DatabaseInterface {
         }
         return issues;
     }
+
+
+    public static List<Subcategory> getSubcategories(int tagId)
+    {
+
+        List<Subcategory> subcategories = new ArrayList<Subcategory>();
+        try(Connection con = DatabaseConnector.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement("SELECT subtagType, subtagId FROM SUBTAGS INNER JOIN TAGS ON TAGS.tagId = SUBTAGS.tagId WHERE TAGS.tagId = ?");
+            ps.setInt(1, tagId);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                String subtagType = rs.getString("subtagType");
+                String subtagId = rs.getString("subtagId");
+                subcategories.add(new Subcategory(subtagId, subtagType));
+            }
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return subcategories;
+    }
     public static List<UserBean> getUsersWithRole(String role) throws SQLException
     {
 
@@ -351,5 +460,4 @@ public class DatabaseInterface {
         }
         return users;
     }
-
 }

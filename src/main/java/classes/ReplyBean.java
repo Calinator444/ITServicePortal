@@ -18,6 +18,5 @@ public class ReplyBean {
         this.user = user;
     }
 
-    //les keep this shit SIMPLE family
     private String body, user;
 }

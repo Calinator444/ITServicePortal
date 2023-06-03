@@ -4,20 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99ee8381-b7bb-48e7-addd-e657b56d57bb" name="Changes" comment="Added category/subcategory filtering">
-      <change afterPath="$PROJECT_DIR$/src/main/java/classes/AssignStaffToIssue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/classes/ITManagerAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/classes/MarkIssue.java" afterDir="false" />
+    <list default="true" id="99ee8381-b7bb-48e7-addd-e657b56d57bb" name="Changes" comment="Added ability for IT managers to assign issues to staff">
+      <change afterPath="$PROJECT_DIR$/src/main/java/classes/GetSubcategories.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/classes/IssueReporting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/classes/StaffPageAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/classes/Subcategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___com_example___ITServicePortal_1_0_SNAPSHOT_war__exploded_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Gradle___com_example___ITServicePortal_1_0_SNAPSHOT_war__exploded_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/classes/DatabaseInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/DatabaseInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/classes/IssueBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/IssueBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/LoginAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/LoginAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/LoginDetailsInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/LoginDetailsInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/UserBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/UserBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/ReplyBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/ReplyBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/SubmitAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/SubmitAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/struts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/struts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/Home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/Manager.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Manager.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/ViewIssue.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/ViewIssue.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/IssueReporting.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/IssueReporting.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Staff.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Staff.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,7 +228,8 @@
       <workItem from="1685531815972" duration="11792000" />
       <workItem from="1685580345386" duration="6466000" />
       <workItem from="1685591598566" duration="15294000" />
-      <workItem from="1685663970985" duration="30662000" />
+      <workItem from="1685663970985" duration="52115000" />
+      <workItem from="1685765971447" duration="5584000" />
     </task>
     <task id="LOCAL-00001" summary="Login page set up">
       <created>1684482294484</created>
@@ -299,7 +301,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685638684546</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added ability for IT managers to assign issues to staff">
+      <created>1685702346072</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1685702346072</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -324,6 +333,7 @@
     <MESSAGE value="Fixed issue bean" />
     <MESSAGE value="Fixed getIssue()" />
     <MESSAGE value="Added category/subcategory filtering" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added category/subcategory filtering" />
+    <MESSAGE value="Added ability for IT managers to assign issues to staff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ability for IT managers to assign issues to staff" />
   </component>
 </project>
