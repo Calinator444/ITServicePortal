@@ -24,65 +24,6 @@ public class DatabaseInterface {
             throw(e);
         }
     }
-
-
-    public static List<IssueBean> getIssuesAssignedToStaff(String username)
-    {
-        List<IssueBean> issues = new ArrayList<IssueBean>();
-        String statement = "SELECT reporter, fixer, issueStatus, title, issueDescript, dateTimeReport, dateTimeSolved FROM ISSUES "+
-                "INNER JOIN TAGS ON ISSUES.tagId = TAGS.tagId "+
-                "INNER JOIN SUBTAGS ON SUBTAGS.subtagId = ISSUES.subTagId "+
-                "WHERE fixer = ?";
-        try(Connection con = DatabaseConnector.getConnection())
-        {
-            PreparedStatement ps = con.prepareStatement(statement);
-            ps.setString(1, username);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next())
-            {
-
-
-                System.out.println("found issue");
-                IssueBean i = new IssueBean();
-                i.setReporter(rs.getString("reporter"));
-                i.setFixer(rs.getString("fixer"));
-                i.setIssueStatus(rs.getString("issueStatus"));
-                i.setTitle(rs.getString("title"));
-                i.setIssueDescript(rs.getString("issueDescript"));
-                i.setDateTimeReport(rs.getDate("dateTimeReport"));
-                //well get the date/time it was reported later maybe?
-                //i.setDateTimeResolved();
-                issues.add(i);
-            }
-        }
-        catch (SQLException e)
-        {
-            System.out.println(e.getMessage());
-        }
-        return issues;
-    }
-
-
-
-
-    public static List<Tag> getTags()
-    {
-        List<Tag> tags = new ArrayList<Tag>();
-        try(Connection con = DatabaseConnector.getConnection())
-        {
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM USERTAGS");
-            while (rs.next())
-            {
-                tags.add(new Tag(rs.getString("tagId"), rs.getString("tag")));
-            }
-        }
-        catch (SQLException e)
-        {
-            System.out.println(e.getMessage());
-        }
-        return tags;
-    }
     public static UserBean getUser(String username) throws SQLException
     {
 
@@ -184,7 +125,8 @@ public class DatabaseInterface {
                 i.setTitle(rs.getString("title"));
                 i.setIssueDescript(rs.getString("issueDescript"));//seriously, why tf was this column called issueDescript?
                 i.setIssueId(rs.getInt("issueId"));
-                i.setIssueStatus(rs.getString("issueStatus"));
+
+
                 String replyText = rs.getString("replyText");
                 if(replyText != null) {
                     for (CommentBean comment : comments) {
@@ -195,8 +137,8 @@ public class DatabaseInterface {
                             if(replies == null)
                                 replies = new ArrayList<ReplyBean>();
                             ReplyBean rb = new ReplyBean();
-                            rb.setBody(rs.getString("replyText"));
-                            rb.setUser(rs.getString("replyUser"));
+                            rb.setBody(rs.getString("replyUser"));
+                            rb.setUser(rs.getString("replyText"));
                             replies.add(rb);
                             comment.setReplies(replies);
                         }
@@ -233,7 +175,7 @@ public class DatabaseInterface {
                 issue.setFixer(rs.getString("fixer"));
                 issue.setIssueStatus(rs.getString("issueStatus"));
                 issue.setTitle(rs.getString("title"));
-                issue.setDateTimeReport(rs.getDate("dateTimeReport"));
+                issue.setDateTimeResolved(rs.getDate("dateTimeSolved"));
                 issues.add(issue);
                 //issues = ArrayFunctions.appendToArray(issues, issue);
             }
@@ -245,83 +187,43 @@ public class DatabaseInterface {
         }
         //return null;
     }
-    public static void reportNewIssue(String reporter, String title, String description, int tagId, int subTagId, List<String> tags) throws SQLException {
-        List<Integer> tagKeys = new ArrayList<Integer>();
-
-        int insertedId = -1;
+    public static void reportNewIssue(String title, String description, String user, String tag) throws SQLException {
         try (Connection con = DatabaseConnector.getConnection())
         {
-            PreparedStatement ps;
-            for(String tag : tags)
-            {
-
-                ps = con.prepareStatement("IF NOT EXISTS(SELECT * FROM USERTAGS WHERE tag = ?) "+
-                        "BEGIN "+
-                        "INSERT INTO USERTAGS VALUES (?) "+
-                        "END "+
-                        "ELSE "+
-                        "BEGIN "+
-                        "SELECT tagId FROM USERTAGS WHERE tag = ? "+
-                        "END", PreparedStatement.RETURN_GENERATED_KEYS);
-                ps.setString(1,tag);
-                ps.setString(2,tag);
-                ps.setString(3, tag);
-                ResultSet rs = ps.executeQuery();
-                if(rs.next()) {
-                    System.out.println("Select operation was ran");
-                    System.out.println(rs.getString(1));
-                    tagKeys.add(rs.getInt(1));
-                }
-                else {
-                    System.out.println("Insert operation was ran");
-                    rs = ps.getGeneratedKeys();
-                    if (rs.next())
-                        tagKeys.add(rs.getInt(1));
-                }
-            }
-            for(int key : tagKeys)
-            {
-                System.out.println(key);
-            }
-            ps = con.prepareStatement("INSERT INTO ISSUES VALUES(?, null, 'new', ?, ?, CURRENT_TIMESTAMP, null, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setString(1, reporter);
+            PreparedStatement ps = con.prepareStatement("INSERT INTO ISSUES VALUES(?, null, 'new', ?, ?, CURRENT_TIMESTAMP, null, ?, null)");
+            ps.setString(1, user);
             ps.setString(2, title);
             ps.setString(3, description);
-            ps.setInt(4,tagId);
-            ps.setInt(5,subTagId);
-            ps.executeUpdate();
+            ps.setInt(4, Integer.parseInt(tag));
+            int affectedRows = ps.executeUpdate();
+            System.out.println("Inserted new issue with title: " + title + ", and description: " + description + ". Affected rows: " + affectedRows);
 
-            ResultSet rs = ps.getGeneratedKeys();
-            while(rs.next())
-                insertedId = rs.getInt(1);
-            for(int key : tagKeys)
-            {
-                System.out.println("adding tuple to user tags");
-                ps = con.prepareStatement("INSERT INTO ISSUEUSERTAG VALUES(?,?)");
-                ps.setInt(1, insertedId);
-                ps.setInt(2, key);
-                ps.executeUpdate();
-            }
         }
         catch(SQLException e)
         {
             throw(e);
         }
     }
-    public static List<IssueBean> getFilteredIssues(int tagId, int subTagId, int userTagId) throws SQLException
+
+
+
+
+    //I'll add an overload with the subcategory again soon
     {
-        String query = "SELECT reporter, fixer, issueStatus, title, issueDescript, dateTimeReport, dateTimeSolved FROM ISSUES\n" +
-                "INNER JOIN TAGS ON ISSUES.tagId = TAGS.tagId " +
-                "INNER JOIN SUBTAGS ON SUBTAGS.subtagId = ISSUES.subTagId " +
-                "INNER JOIN ISSUEUSERTAG ON ISSUEUSERTAG.issueId = ISSUES.issueId " +
-                "WHERE ISSUES.subTagId = ? AND ISSUES.tagId = ? AND ISSUEUSERTAG.tagId = ?";
+
+    }
+    public static List<IssueBean> getFilteredIssues(int tagId, int subTagId) throws SQLException
+    {
+        String query = "SELECT reporter, fixer, issueStatus, title, issueDescript, dateTimeReport, dateTimeSolved FROM ISSUES "+
+        "INNER JOIN TAGS ON ISSUES.tagId = TAGS.tagId "+
+        "INNER JOIN SUBTAGS ON SUBTAGS.subtagId = ISSUES.subTagId "+
+        "WHERE ISSUES.subTagId = ? AND ISSUES.tagId = ?";
         List<IssueBean> issues = new ArrayList<IssueBean>();
 
         try(Connection con = DatabaseConnector.getConnection()) {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, subTagId);
             ps.setInt(2, tagId);
-            ps.setInt(3, userTagId);
             ResultSet rs = ps.executeQuery();
             while(rs.next())
             {
@@ -415,30 +317,6 @@ public class DatabaseInterface {
         }
         return issues;
     }
-
-
-    public static List<Subcategory> getSubcategories(int tagId)
-    {
-
-        List<Subcategory> subcategories = new ArrayList<Subcategory>();
-        try(Connection con = DatabaseConnector.getConnection())
-        {
-            PreparedStatement ps = con.prepareStatement("SELECT subtagType, subtagId FROM SUBTAGS INNER JOIN TAGS ON TAGS.tagId = SUBTAGS.tagId WHERE TAGS.tagId = ?");
-            ps.setInt(1, tagId);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next())
-            {
-                String subtagType = rs.getString("subtagType");
-                String subtagId = rs.getString("subtagId");
-                subcategories.add(new Subcategory(subtagId, subtagType));
-            }
-        }
-        catch (SQLException e)
-        {
-            System.out.println(e.getMessage());
-        }
-        return subcategories;
-    }
     public static List<UserBean> getUsersWithRole(String role) throws SQLException
     {
 
@@ -475,23 +353,6 @@ public class DatabaseInterface {
             throw(e);
         }
         return users;
-    }
-
-
-
-    public static void markCompleted(int commentId, int issueId)
-    {
-        try(Connection con = DatabaseConnector.getConnection())
-        {
-            PreparedStatement ps = con.prepareStatement("UPDATE TABLE ISSUES set resolution = ?, dateTimeSolved = CURRENT_TIMESTAMP issueStatus  = 'resolved' WHERE issueId = ?");
-            ps.setInt(1, commentId);
-            ps.setInt(2,issueId);
-            ps.executeUpdate();
-        }
-        catch (SQLException e)
-        {
-            System.out.println(e.getMessage());
-        }
     }
 
 }

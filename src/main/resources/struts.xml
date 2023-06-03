@@ -22,17 +22,15 @@ Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
                 /ViewIssue.jsp
             </result>
         </action>
-        <action name="IssueReporting" class="classes.IssueReporting">
+        <action name="IssueReporting">
+            <interceptor-ref name="myStack"></interceptor-ref>
             <result name="success">
                 /IssueReporting.jsp
             </result>
         </action>
 
 
-        <action name="Logout">
-            <interceptor-ref name="clearSession"></interceptor-ref>
-            <result name="success">/Login.jsp</result>
-        </action>
+
         <action name="ITManagementView" class="classes.ITManagerAction">
             <result name="success">
                 /Manager.jsp
@@ -57,20 +55,12 @@ Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
             </result>
         </action>
 
-
-
-        <action name="StaffView" class="classes.StaffPageAction">
-            <result name="success">
-                /Staff.jsp
-            </result>
-        </action>
-
         <action name="SubmitIssue" class="classes.SubmitAction">
             <result name="success">
                 /IssueReporting.jsp
             </result>
             <result name="error">
-                /Home.jsp
+                /IssueReporting.jsp
             </result>
         </action>
         <action name="Login">
