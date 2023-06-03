@@ -54,9 +54,9 @@
     <ul class="navigatonBar">
         <li><a href="./Home.jsp">Home</a></li>
         <li><a href="#Kowledge Base">Kowledge Base</a></li>
-        <li><a href="./IssueReporting.action">Submit Issue</a></li>
+        <li><a href="./SubmitIssue.jsp">Submit Issue</a></li>
         <s:if test='%{#session.User.role == "ITManager"}'>
-        <li><a href="./ITManagementView.action">IT Manager View</a></li>
+            <li><a href="./ITManagementView.action">IT Manager View</a></li>
         </s:if>
         <s:if test='%{#session.User.role == "ITStaff"}'>
             <li><a href="./StaffView.action">Staff View</a></li>
@@ -117,7 +117,7 @@
             <option value="14">wrong details</option>
         </select>
     </div>
-    <s:select list="#session.Tags" id="tag-list" listValue="value" listKey="key"></s:select>
+
 
 <button id="filterBtn" style="display: none" onclick="filterIssues()">Apply Filter</button>
     <ul>
