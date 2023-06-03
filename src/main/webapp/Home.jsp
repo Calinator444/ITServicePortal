@@ -60,9 +60,9 @@
             <li><a href="./StaffView.action">Staff View</a></li>
         </s:if>
         <li><a href="./IssueReporting.action">Submit Issue</a></li>
-        <li><s:form action="search"><s:textfield/><s:submit value="Search"/></s:form></li>
-        <li><s:form action="toLogin"><s:submit value="Login"/></s:form></li>
-        <li><s:form action="./Logout.jsp"><s:submit value="Logout"/></s:form></li>
+        <li class="searchLi"><s:form action="search"><s:textfield name="search" class="searchField"/><s:submit value="Search" class="searchButton"/></s:form></li>
+        <li><s:form action="toLogin"><s:submit value="Login" class="loginButton"/></s:form></li>
+        <li><s:form action="./Logout.jsp"><s:submit value="Logout" class="logoutButton"/></s:form></li>
     </ul>
 </nav>
 
