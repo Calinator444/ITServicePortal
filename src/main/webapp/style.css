@@ -33,7 +33,7 @@
     border-radius: 5px;
     padding: 20px;
     width: 500px;
-    margin-left: 630px;
+    margin: auto;
 }
 .loginPage{
     background-image: url("./images/login_background.jpg");
@@ -83,9 +83,10 @@
 h1{
     text-align: center;
 }
+/*
 h2{
     text-align: center;
-}
+}*/
 .loginSubmit{
     width: 111%;
     background-color: cornflowerblue;
@@ -114,7 +115,7 @@ input[type=password]{
     border-radius: 4px;
     box-sizing: border-box;
 }
-li a{
+ul.navigatonBar > li > a{
     display: block;
     color: white;
     text-align: center;

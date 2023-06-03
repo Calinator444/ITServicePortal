@@ -61,6 +61,28 @@ public class DatabaseInterface {
         }
         return issues;
     }
+
+
+
+
+    public static List<Tag> getTags()
+    {
+        List<Tag> tags = new ArrayList<Tag>();
+        try(Connection con = DatabaseConnector.getConnection())
+        {
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM USERTAGS");
+            while (rs.next())
+            {
+                tags.add(new Tag(rs.getString("tagId"), rs.getString("tag")));
+            }
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        return tags;
+    }
     public static UserBean getUser(String username) throws SQLException
     {
 
@@ -162,8 +184,7 @@ public class DatabaseInterface {
                 i.setTitle(rs.getString("title"));
                 i.setIssueDescript(rs.getString("issueDescript"));//seriously, why tf was this column called issueDescript?
                 i.setIssueId(rs.getInt("issueId"));
-
-
+                i.setIssueStatus(rs.getString("issueStatus"));
                 String replyText = rs.getString("replyText");
                 if(replyText != null) {
                     for (CommentBean comment : comments) {
@@ -174,8 +195,8 @@ public class DatabaseInterface {
                             if(replies == null)
                                 replies = new ArrayList<ReplyBean>();
                             ReplyBean rb = new ReplyBean();
-                            rb.setBody(rs.getString("replyUser"));
-                            rb.setUser(rs.getString("replyText"));
+                            rb.setBody(rs.getString("replyText"));
+                            rb.setUser(rs.getString("replyUser"));
                             replies.add(rb);
                             comment.setReplies(replies);
                         }
@@ -287,26 +308,20 @@ public class DatabaseInterface {
             throw(e);
         }
     }
-
-
-
-
-    //I'll add an overload with the subcategory again soon
+    public static List<IssueBean> getFilteredIssues(int tagId, int subTagId, int userTagId) throws SQLException
     {
-
-    }
-    public static List<IssueBean> getFilteredIssues(int tagId, int subTagId) throws SQLException
-    {
-        String query = "SELECT reporter, fixer, issueStatus, title, issueDescript, dateTimeReport, dateTimeSolved FROM ISSUES "+
-        "INNER JOIN TAGS ON ISSUES.tagId = TAGS.tagId "+
-        "INNER JOIN SUBTAGS ON SUBTAGS.subtagId = ISSUES.subTagId "+
-        "WHERE ISSUES.subTagId = ? AND ISSUES.tagId = ?";
+        String query = "SELECT reporter, fixer, issueStatus, title, issueDescript, dateTimeReport, dateTimeSolved FROM ISSUES\n" +
+                "INNER JOIN TAGS ON ISSUES.tagId = TAGS.tagId " +
+                "INNER JOIN SUBTAGS ON SUBTAGS.subtagId = ISSUES.subTagId " +
+                "INNER JOIN ISSUEUSERTAG ON ISSUEUSERTAG.issueId = ISSUES.issueId " +
+                "WHERE ISSUES.subTagId = ? AND ISSUES.tagId = ? AND ISSUEUSERTAG.tagId = ?";
         List<IssueBean> issues = new ArrayList<IssueBean>();
 
         try(Connection con = DatabaseConnector.getConnection()) {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, subTagId);
             ps.setInt(2, tagId);
+            ps.setInt(3, userTagId);
             ResultSet rs = ps.executeQuery();
             while(rs.next())
             {
@@ -460,6 +475,23 @@ public class DatabaseInterface {
             throw(e);
         }
         return users;
+    }
+
+
+
+    public static void markCompleted(int commentId, int issueId)
+    {
+        try(Connection con = DatabaseConnector.getConnection())
+        {
+            PreparedStatement ps = con.prepareStatement("UPDATE TABLE ISSUES set resolution = ?, dateTimeSolved = CURRENT_TIMESTAMP issueStatus  = 'resolved' WHERE issueId = ?");
+            ps.setInt(1, commentId);
+            ps.setInt(2,issueId);
+            ps.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 
 }

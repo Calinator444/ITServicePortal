@@ -34,6 +34,8 @@ public class IssueViewAction extends ActionSupport implements SessionAware {
         //title can be passed as a parameter\
         IssueBean i;
         i = DatabaseInterface.getIssue(title);
+
+
         //redirect them to no article page
         if(i == null || title == null)
         {
@@ -46,6 +48,7 @@ public class IssueViewAction extends ActionSupport implements SessionAware {
         }
         else
             System.out.println("Item successfully mapped to session");
+            System.out.println(i.getIssueStatus());
        sessionMap.put("Issue", i);
        return SUCCESS;
 

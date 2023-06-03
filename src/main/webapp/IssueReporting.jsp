@@ -38,7 +38,7 @@
 </head>
 <body>
   <h1>Report Issue</h1>
-  <s:form action="SubmitIssue.action" onsubmit="return validation()">
+  <s:form action="./SubmitIssue.action" onsubmit="return validation()">
     <s:textfield label="title" name="title"></s:textfield>
     <s:textarea label="description" name="issueDescript"></s:textarea>
     <s:textfield id="tags" placeolder="tag1;tag2;... etc" label="tags" name="tags"></s:textfield>

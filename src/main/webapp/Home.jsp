@@ -16,9 +16,11 @@
         const filterIssues = ()=>{
             let tagId = document.querySelector("#category").value;
             let subTagId = document.querySelector("#subcategory"+tagId).value
+            let userTagId = document.querySelector("#tag-list").value;
             let data = new URLSearchParams();
             data.append("subTagId", subTagId);
             data.append("tagId", tagId);
+            data.append("userTagid", userTagId);
             fetch("/ITServicesPortal/FilterIssues", {body: data, method: "post"}).then((res)=>{
                 if(res.redirected)
                     window.location.href= res.url;
@@ -52,17 +54,15 @@
     <ul class="navigatonBar">
         <li><a href="./Home.jsp">Home</a></li>
         <li><a href="#Kowledge Base">Kowledge Base</a></li>
-        <li><a href="./SubmitIssue.jsp">Submit Issue</a></li>
+        <li><a href="./IssueReporting.action">Submit Issue</a></li>
         <s:if test='%{#session.User.role == "ITManager"}'>
-            <li><a href="./ITManagementView.action">IT Manager View</a></li>
+        <li><a href="./ITManagementView.action">IT Manager View</a></li>
         </s:if>
         <s:if test='%{#session.User.role == "ITStaff"}'>
             <li><a href="./StaffView.action">Staff View</a></li>
         </s:if>
-        <li><a href="./IssueReporting.action">Submit Issue</a></li>
-        <li><s:form action="search"><s:textfield/><s:submit value="Search"/></s:form></li>
-        <li><s:form action="toLogin"><s:submit value="Login"/></s:form></li>
-        <li><s:form action="./Logout.jsp"><s:submit value="Logout"/></s:form></li>
+        <li><a href="./Logout.action">Log out</a></li>
+
     </ul>
 </nav>
 
@@ -117,7 +117,7 @@
             <option value="14">wrong details</option>
         </select>
     </div>
-
+    <s:select list="#session.Tags" id="tag-list" listValue="value" listKey="key"></s:select>
 
 <button id="filterBtn" style="display: none" onclick="filterIssues()">Apply Filter</button>
     <ul>

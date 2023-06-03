@@ -12,27 +12,33 @@ import java.util.*;
 @WebServlet(urlPatterns = "/FilterIssues")
 public class FilterIssues extends HttpServlet {
 
-    @Override public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException
-    {
+    @Override public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         System.out.println("end point reached");
+
+
+        try {
             HttpSession session = req.getSession();
             //System.out.println(req.getParameter("tagId"));
             //System.out.println(req.getParameter("subTagId"));
             int tagId = Integer.parseInt(req.getParameter("tagId"));
             int subTagId = Integer.parseInt(req.getParameter("subTagId"));
+            int userTagId = Integer.parseInt(req.getParameter("userTagid"));
 
             List<IssueBean> issues;
-        System.out.println("created issue bean list");
+            System.out.println("created issue bean list");
             try {
 
-                issues = DatabaseInterface.getFilteredIssues(tagId, subTagId);
+                issues = DatabaseInterface.getFilteredIssues(tagId, subTagId, userTagId);
                 session.setAttribute("Issues", issues);
                 System.out.println("attempting to send redirect");
                 resp.sendRedirect("/ITServicesPortal/Home.action");
-            }
-            catch (SQLException e) {
+            } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
+    }
+
 
 }

@@ -15,6 +15,8 @@ public class AddComment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+
+            System.out.println("endpoint was reached");
             HttpSession session = req.getSession();
             UserBean user = (UserBean) session.getAttribute("User");
             IssueBean issue = (IssueBean) session.getAttribute("Issue");

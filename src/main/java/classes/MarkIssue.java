@@ -20,9 +20,7 @@ public class MarkIssue extends HttpServlet {
 
             HttpSession session = req.getSession();
             IssueBean issue = (IssueBean) session.getAttribute("Issue");
-            //IssueBean issueBean = (IssueBean) req.getAttribute("Issue");
             int issueId = issue.getIssueId();
-            System.out.println("try statement successful");
             String status = req.getParameter("status");
             try {
                 DatabaseInterface.markIssueStatus(issueId, status);
@@ -31,6 +29,7 @@ public class MarkIssue extends HttpServlet {
             catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
+            res.sendRedirect("./Home.jsp");
 
     }
 

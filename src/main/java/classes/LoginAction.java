@@ -12,6 +12,7 @@ import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 
 import javax.servlet.Servlet;
+import javax.xml.crypto.Data;
 import java.sql.*;
 import java.util.Map;
 
@@ -46,6 +47,9 @@ public class LoginAction extends ActionSupport implements ConnectionAware, Model
     public String execute() throws SQLException
     {
         //execute only runs on a successful login
+
+
+        sessionMap.put("Tags", DatabaseInterface.getTags());
         sessionMap.put("Issues", DatabaseInterface.getIssues());
         sessionMap.put("User", DatabaseInterface.getUser(this.model.getUsername()));
         return SUCCESS;

@@ -11,7 +11,6 @@ public class CommentBean {
 
     private List<ReplyBean> replies;
 
-
     public String getUserUsername() {
         return userUsername;
     }

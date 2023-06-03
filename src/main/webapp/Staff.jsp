@@ -37,7 +37,7 @@
     </tr>
     <s:iterator value="#session.IssuesForStaff" var="issue">
         <tr>
-            <td><s:property value="#issue.title"></s:property></td>
+            <td><a href="./ViewIssue.action?title=${issue.title}"><s:property value="#issue.title"></s:property></a></td>
             <td><s:property value="#issue.issueStatus"></s:property></td>
             <td><s:property value="#issue.dateTimeReport"></s:property></td>
         </tr>
@@ -55,13 +55,7 @@
         <!--<th>Category</th>-->
         <th>Created Date</th>
     </tr>
-
-
-
     <c:forEach var="issue" items="${Issues}">
-
-
-
         <tr>
             <td>${issue.title}</td>
             <td>${issue.issueStatus}</td>

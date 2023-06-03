@@ -70,7 +70,7 @@ Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
                 /IssueReporting.jsp
             </result>
             <result name="error">
-                /IssueReporting.jsp
+                /Home.jsp
             </result>
         </action>
         <action name="Login">
