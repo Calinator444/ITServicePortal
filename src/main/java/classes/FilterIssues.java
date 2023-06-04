@@ -28,7 +28,7 @@ public class FilterIssues extends HttpServlet {
             System.out.println("created issue bean list");
             try {
 
-                issues = DatabaseInterface.getFilteredIssues(tagId, subTagId, userTagId);
+                issues = DatabaseInterface.getFilteredIssues(tagId, subTagId);
                 session.setAttribute("Issues", issues);
                 System.out.println("attempting to send redirect");
                 resp.sendRedirect("/ITServicesPortal/Home.action");

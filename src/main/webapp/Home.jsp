@@ -54,15 +54,17 @@
     <ul class="navigatonBar">
         <li><a href="./Home.jsp">Home</a></li>
         <li><a href="#Kowledge Base">Kowledge Base</a></li>
-        <li><a href="./SubmitIssue.jsp">Submit Issue</a></li>
+
         <s:if test='%{#session.User.role == "ITManager"}'>
             <li><a href="./ITManagementView.action">IT Manager View</a></li>
         </s:if>
         <s:if test='%{#session.User.role == "ITStaff"}'>
             <li><a href="./StaffView.action">Staff View</a></li>
         </s:if>
+        <s:if test='%{#session.User.role == "Student"}'>
+            <li><a href="./SubmitIssue.action">Submit Issue</a></li>
+        </s:if>
         <li><a href="./Logout.action">Log out</a></li>
-
     </ul>
 </nav>
 

@@ -63,8 +63,8 @@ public class ITManagerAction extends ActionSupport implements SessionAware {
             sessionMap.put("fixer", fixerNumber);
             sessionMap.put("topFiveName", topFive);
             sessionMap.put("averageOver30Days", averageBeanList);
-//            for (Map.Entry<String, Object> entry : sessionMap.entrySet()) {
-//                System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+ //           for (Map.Entry<String, Object> entry : sessionMap.entrySet()) {
+ //               System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
 //           }
 
         }

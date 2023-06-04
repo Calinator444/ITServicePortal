@@ -28,8 +28,11 @@ Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
                 /IssueReporting.jsp
             </result>
         </action>
-
-
+        <action name="StaffView" class="classes.StaffPageAction">
+            <result name="success">
+                /Staff.jsp
+            </result>
+        </action>
 
         <action name="ITManagementView" class="classes.ITManagerAction">
             <result name="success">
