@@ -65,69 +65,69 @@
     </s:if>
   </ul>
 </nav>
-<h1><c:property value="#session.Issue.title"></c:property></h1>
+<div class="ViewIssuePage">
+  <h1><c:property value="#session.Issue.title"></c:property></h1>
 
-<p>
-  <c:property value="#session.Issue.issueDescript"></c:property>
-</p>
-<label for="mark-issue">Mark Issue</label>
-<select id="mark-issue">
-  <option>
-    new
-  </option>
-  <option>
-    waiting on third party
-  </option>
-  <option>
-    completed
-  </option>
-  <option>
-    not accepted
-  </option>
-  <option>
-    resolved
-  </option>
-</select>
-<button onclick="markIssue()">Mark Issue</button>
-</button>
-
-
-<c:form action="/AddComment" method="POST">
-  <c:textarea name="body" label="Leave a comment"> </c:textarea>
-  <c:submit></c:submit>
-</c:form>
-
-<p>
-  IssueId: <c:property value="#session.Issue.issueId"></c:property>
-</p>
-<h3>Comments</h3>
-<ul>
-  <c:iterator value="#session.Issue.comments" var="comment">
-    <li>
-      <span class="username"><c:property value="#comment.userUsername"/><br></span>
-
-      <c:property value="#comment.commentText"/>
+  <p>
+    <c:property value="#session.Issue.issueDescript"></c:property>
+  </p>
+  <label for="mark-issue">Mark Issue</label>
+  <select id="mark-issue">
+    <option>
+      new
+    </option>
+    <option>
+      waiting on third party
+    </option>
+    <option>
+      completed
+    </option>
+    <option>
+      not accepted
+    </option>
+    <option>
+      resolved
+    </option>
+  </select>
+  <button onclick="markIssue()">Mark Issue</button>
+  </button>
 
 
-      <br>
+  <c:form action="/AddComment" method="POST">
+    <c:textarea name="body" label="Leave a comment"> </c:textarea>
+    <c:submit></c:submit>
+  </c:form>
 
-      <textarea id="reply${comment.commentId}">
+  <p>
+    IssueId: <c:property value="#session.Issue.issueId"></c:property>
+  </p>
+  <h3>Comments</h3>
+  <ul>
+    <c:iterator value="#session.Issue.comments" var="comment">
+      <li>
+        <span class="username"><c:property value="#comment.userUsername"/><br></span>
+
+        <c:property value="#comment.commentText"/>
+
+
+        <br>
+
+        <textarea id="reply${comment.commentId}">
 
         </textarea>
-      <button onclick="replyToComment(${comment.commentId})">Test button</button>
-      <ul>
-        <c:iterator value="#comment.replies" var="reply">
-          <li>
-            <c:property value="#reply.user"></c:property><br>
-            <c:property value="#reply.body"></c:property>
-          </li>
-        </c:iterator>
+        <button onclick="replyToComment(${comment.commentId})">Test button</button>
+        <ul>
+          <c:iterator value="#comment.replies" var="reply">
+            <li>
+              <c:property value="#reply.user"></c:property><br>
+              <c:property value="#reply.body"></c:property>
+            </li>
+          </c:iterator>
 
-      </ul>
-    </li>
-  </c:iterator>
-</ul>
-
-
+        </ul>
+      </li>
+    </c:iterator>
+  </ul>
+</div>
 </body>
 </html>

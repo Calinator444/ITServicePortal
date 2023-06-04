@@ -168,13 +168,23 @@ td{
 }
 .HomePage {
     background-color: antiquewhite;
-    height: 100%;
+    height: 1080px;
 }
 .HomePage ul li a{
     color:black;
 }
 .HomePage ul li a:hover{
     color:cornflowerblue;
+}
+.HomePage select{
+    height:30px;
+    cursor: pointer; /* Pointer/hand icon */
+    width: 200px;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
 }
 li{
     list-style-type: none;
@@ -209,4 +219,35 @@ li{
 }
 .Filter ul li a:hover{
     color: cornflowerblue;
+}
+.ViewIssuePage{
+    background-color: antiquewhite;
+    height: 1080px;
+}
+.ViewIssuePage label{
+    font-weight: bold;
+}
+.ViewIssuePage select{
+    height:20px;
+    cursor: pointer; /* Pointer/hand icon */
+    width: 100px;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+.ViewIssuePage textarea{
+    height:100px;
+    cursor: pointer; /* Pointer/hand icon */
+    width: 300px;
+    background-color: ghostwhite;
+    color: black;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+.KnowledgeBasePage{
+    background-color: antiquewhite;
+    height:1080px;
 }

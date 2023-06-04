@@ -26,18 +26,19 @@
     <li><s:form action="./Logout.jsp"><s:submit value="Logout" class="logoutButton"/></s:form></li>
   </ul>
 </nav>
-
-<h1>KnowledgeBase Articles</h1>
-<ul>
-  <s:iterator value="#session.Issues" var="issue">
-    <s:if test="#issue.issueStatus == 'completed'">
-      <li>
-        <a href="/ITServicesPortal/ViewIssue.action?title=${issue.title}">
-          <s:property value="#issue.title"/>
-        </a>
-      </li>
-    </s:if>
-  </s:iterator>
-</ul>
+<div class="KnowledgeBasePage">
+  <h1>KnowledgeBase Articles</h1>
+  <ul>
+    <s:iterator value="#session.Issues" var="issue">
+      <s:if test="#issue.issueStatus == 'completed'">
+        <li>
+          <a href="/ITServicesPortal/ViewIssue.action?title=${issue.title}">
+            <s:property value="#issue.title"/>
+          </a>
+        </li>
+      </s:if>
+    </s:iterator>
+  </ul>
+</div>
 </body>
 </html>
