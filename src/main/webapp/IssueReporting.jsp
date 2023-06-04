@@ -11,30 +11,7 @@
 <html>
 <head>
     <title>Report Issue</title>
-  <script>
-    const validation = ()=>{
-      let tags = document.querySelector("#tags").value;
-      let pattern = /([a-z]+;{1}$)+/;
 
-
-
-      if(!pattern.test(tags) && tags != "")
-      {
-        alert("Tags were not formatted appropriately")
-        return false;
-      }
-      return true
-    }
-
-    const updateSubCategories = ()=>{
-      let categoryId = document.querySelector("#tagId").value;
-      let data = new URLSearchParams()
-      data.append("tagId", categoryId);
-      fetch("/ITServicesPortal/GetSubcategories", {method: "POST", body:data }).then((res)=>{
-        window.location.href = "/ITServicesPortal/IssueReporting.action";
-      })
-    }
-  </script>
 </head>
 <body>
   <h1>Report Issue</h1>

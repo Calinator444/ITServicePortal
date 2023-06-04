@@ -112,6 +112,33 @@ h2{
     border-radius: 4px;
     box-sizing: border-box;
 }
+.UnassignedIssues{
+    border-radius: 4px;
+    float:left;
+    width:25%;
+    height: 100%;
+    background-color: antiquewhite;
+}
+.IssuesInProgress {
+    border-radius: 4px;
+    float:right;
+    width:25%;
+    height: 100%;
+    background-color: antiquewhite;
+}
+.IssuesInProgress li a{
+    color:black;
+}
+.IssuesInProgress li a:hover{
+    color: cornflowerblue;
+}
+.Statistics{
+    border-radius: 4px;
+    float:right;
+    width:50%;
+    background-color: floralwhite;
+    height: 100%;
+}
 input[type=password]{
     width: 100%;
     padding: 12px 50px;
@@ -128,4 +155,14 @@ li a{
     padding: 14px 16px;
     text-decoration: none;
     font-weight: bold;
+}
+.StatTable{
+    margin-left: auto;
+    margin-right: auto;
+}
+th {
+    text-align: center;
+}
+td{
+    text-align: center;
 }
