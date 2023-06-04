@@ -179,3 +179,34 @@ td{
 li{
     list-style-type: none;
 }
+.Filter{
+    border-radius: 4px;
+    float:left;
+    width:25%;
+    height: 1080px;
+    background-color: antiquewhite;
+}
+.StaffUnassigned{
+    border-radius: 4px;
+    float:right;
+    width:25%;
+    height: 1080px;
+    background-color: antiquewhite;
+}
+.AllIssue{
+    border-radius: 4px;
+    float:left;
+    width:50%;
+    background-color: floralwhite;
+    height: 1080px;
+}
+.AllIssue table{
+    margin-right: auto;
+    margin-left: auto;
+}
+.Filter ul li a{
+    color: black;
+}
+.Filter ul li a:hover{
+    color: cornflowerblue;
+}

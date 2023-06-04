@@ -41,7 +41,7 @@
 <nav>
     <ul class="navigatonBar">
         <li><a href="./Home.jsp">Home</a></li>
-        <li><a href="#Kowledge Base">Kowledge Base</a></li>
+        <li><a href="./KowledgeBase.jsp">Kowledge Base</a></li>
         <li><a href="./SubmitIssue.action">Submit Issue</a></li>
         <s:if test='%{#session.User.role == "ITManager"}'>
             <li><a href="./ITManagementView.action">IT Manager View</a></li>
@@ -49,8 +49,9 @@
         <s:if test='%{#session.User.role == "ITStaff"}'>
             <li><a href="./StaffView.action">Staff View</a></li>
         </s:if>
-        <li><a href="./Logout.action">Log out</a></li>
-
+        <li class="searchLi"><s:form action="search"><s:textfield name="search" class="searchField"/><s:submit value="Search" class="searchButton"/></s:form></li>
+        <li><s:form action="./Login.jsp"><s:submit value="Login" class="loginButton"/></s:form></li>
+        <li><s:form action="./Logout.jsp"><s:submit value="Logout" class="logoutButton"/></s:form></li>
     </ul>
 </nav>
 <div class="UnassignedIssues">

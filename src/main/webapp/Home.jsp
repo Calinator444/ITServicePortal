@@ -50,23 +50,25 @@
 </head>
 <body>
 <h1>Welcome to IT Services portal!</h1>
-<nav>
-    <ul class="navigatonBar">
-        <li><a href="./Home.jsp">Home</a></li>
-        <li><a href="#Kowledge Base">Kowledge Base</a></li>
+    <nav>
+        <ul class="navigatonBar">
+            <li><a href="./Home.jsp">Home</a></li>
+            <li><a href="./KnowledgeBase.jsp">Kowledge Base</a></li>
 
-        <s:if test='%{#session.User.role == "ITManager"}'>
-            <li><a href="./ITManagementView.action">IT Manager View</a></li>
-        </s:if>
-        <s:if test='%{#session.User.role == "ITStaff"}'>
-            <li><a href="./StaffView.action">Staff View</a></li>
-        </s:if>
-        <s:if test='%{#session.User.role == "Student"}'>
-            <li><a href="./SubmitIssue.action">Submit Issue</a></li>
-        </s:if>
-        <li><a href="./Logout.action">Log out</a></li>
-    </ul>
-</nav>
+            <s:if test='%{#session.User.role == "ITManager"}'>
+                <li><a href="./ITManagementView.action">IT Manager View</a></li>
+            </s:if>
+            <s:if test='%{#session.User.role == "ITStaff"}'>
+                <li><a href="./StaffView.action">Staff View</a></li>
+            </s:if>
+            <s:if test='%{#session.User.role == "Student"}'>
+                <li><a href="./SubmitIssue.action">Submit Issue</a></li>
+            </s:if>
+            <li class="searchLi"><s:form action="search"><s:textfield name="search" class="searchField"/><s:submit value="Search" class="searchButton"/></s:form></li>
+            <li><s:form action="./Login.jsp"><s:submit value="Login" class="loginButton"/></s:form></li>
+            <li><s:form action="./Logout.jsp"><s:submit value="Logout" class="logoutButton"/></s:form></li>
+        </ul>
+    </nav>
 <div class="HomePage">
     <h1>Issues</h1>
     <h2>Filtering</h2>
