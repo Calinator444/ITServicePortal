@@ -166,3 +166,16 @@ th {
 td{
     text-align: center;
 }
+.HomePage {
+    background-color: antiquewhite;
+    height: 100%;
+}
+.HomePage ul li a{
+    color:black;
+}
+.HomePage ul li a:hover{
+    color:cornflowerblue;
+}
+li{
+    list-style-type: none;
+}

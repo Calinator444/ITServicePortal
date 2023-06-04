@@ -67,7 +67,7 @@
         <li><a href="./Logout.action">Log out</a></li>
     </ul>
 </nav>
-
+<div class="HomePage">
     <h1>Issues</h1>
     <h2>Filtering</h2>
     <label for="category">Category</label>
@@ -81,12 +81,12 @@
     </select>
 
     <div id="subcategory1-wrapper" style="display:none;">
-    <label for="subcategory1">Subcategory</label>
-    <select id="subcategory1">
-        <option value="1">can't connect</option>
-        <option value="2">speed</option>
-        <option value="3">constant dropouts</option>
-    </select>
+        <label for="subcategory1">Subcategory</label>
+        <select id="subcategory1">
+            <option value="1">can't connect</option>
+            <option value="2">speed</option>
+            <option value="3">constant dropouts</option>
+        </select>
     </div>
     <div id="subcategory2-wrapper" style="display:none;">
         <label for="subcategory2">Subcategory</label>
@@ -121,15 +121,16 @@
     </div>
 
 
-<button id="filterBtn" style="display: none" onclick="filterIssues()">Apply Filter</button>
+    <button id="filterBtn" style="display: none" onclick="filterIssues()">Apply Filter</button>
     <ul>
-    <s:iterator value="#session.Issues" var="issue">
-        <li>
-            <a href="/ITServicesPortal/ViewIssue.action?title=${issue.title}">
-                <s:property value="#issue.title"/>
-            </a>
-        </li>
-    </s:iterator>
+        <s:iterator value="#session.Issues" var="issue">
+            <li>
+                <a href="/ITServicesPortal/ViewIssue.action?title=${issue.title}">
+                    <s:property value="#issue.title"/>
+                </a>
+            </li>
+        </s:iterator>
     </ul>
+</div>
 </body>
 </html>
